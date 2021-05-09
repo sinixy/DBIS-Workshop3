@@ -11,11 +11,11 @@
     	<textarea class="form-control" name="text">{{ blog.text }}</textarea>
     </div>
     {% if session['username'] == 'admin' %}
-        <div class="form-group">
+        <div class="form-group user-input">
             <label>Date</label>
         	<input class="form-control" type="date" name="date" value="{{ blog.date }}">
         </div>
-        <div class="form-group">
+        <div class="form-group user-input">
             <label>Author</label>
             <select class="form-control" name="author">
                 <option value="{{ blog.author }}" selected>Current authorID = {{ blog.author }}</option>

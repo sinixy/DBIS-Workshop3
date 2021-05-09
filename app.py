@@ -73,23 +73,25 @@ def signup():
 		valid = True
 
 		if password != password_repeat:
-			flash('Pass dame')
+			flash("Password doesn't match!")
 			valid = False
 
 		user_login = User.query.filter_by(login=login).first()
 		user_email = User.query.filter_by(email=email).first()
 		if user_login:
-			flash('Login dame')
+			flash('This login is already taken!')
 			valid = False
 		if user_email:
-			flash('Email dame')
+			flash('This email is already taken!')
 			valid = False
 
 		if valid:
 			new_user = User(login=login, password=password, email=email)
 			db.session.add(new_user)
 			db.session.commit()
-			flash('Success!')
+			session['uid'] = new_user.uid
+			session['username'] = login
+			return redirect('/')
 
 		return render_template('signup.html')
 	else:
