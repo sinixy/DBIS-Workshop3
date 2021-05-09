@@ -5,6 +5,7 @@ Flask
 Flask-Migrate==2.4.0
 Flask-SQLAlchemy
 greenlet
+gunicorn
 itsdangerous
 Jinja2
 Mako
