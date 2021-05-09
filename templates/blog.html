@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h3>{{ blog.title }}</h3>
+<p>{{ blog.text }}</p>
+{% set blog_author = blog.author|get_user %}
+<p>by {{ blog_author.login }}</p>
+{% if blog.author == session['uid'] or session['username'] == 'admin' %}
+	<div role="group" class="btn-group">
+        <a href="/blog/{{ blog.blogid }}/edit" class="btn btn-primary" type="button">Edit <i class="fa fa-edit"></i></a>
+        <a href="/blog/{{ blog.blogid }}/delete" class="btn btn-danger" type="button">Delete <i class="fa fa-trash"></i></a>
+    </div>
+{% endif %}
+
+<section id="comment-section">
+    {% for comment in comments %}
+        {% set comment_author = comment.user|get_user %}
+        <h6>{{ comment_author.login }}</h6>
+        <p>{{ comment.text }}</p>
+        {% if comment.user == session['uid'] or session['username'] == 'admin' %}
+            <div role="group" class="btn-group">
+                <a href="/comment/{{ comment.comid }}/edit" class="btn btn-primary" type="button">Edit <i class="fa fa-edit"></i></a>
+                <a href="/comment/{{ comment.comid }}/delete" class="btn btn-danger" type="button">Delete <i class="fa fa-trash"></i></a>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <form id="comment-form" action='/blog/{{ blog.blogid }}/add-comment' method="POST">
+        <div class="form-group user-input">
+            <textarea class="form-control" name="text" placeholder="Type something..."></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Comment</button>
+    </form>
+</section>
+{% endblock %}

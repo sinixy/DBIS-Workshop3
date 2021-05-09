@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script type="text/javascript">
+        function toggle_dropdown(element) {
+            element.classList.toggle("show");
+        }
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            document.getElementById("profile-drop").addEventListener("click", function() {
+                toggle_dropdown(document.getElementById("profile-droplist"));
+            });
+        });
+    </script>
+    <title>Lab3</title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+            <div class="container">
+                <a class="navbar-brand" href="/">Workshop 3</a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+                    <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse"
+                    id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="/blog">Blogs</a></li>
+                    </ul>
+                    {% if session['username'] %}
+                        <div class="dropdown ms-auto">
+                            <button class="btn btn-primary dropdown-toggle" id="profile-drop">{{ session['username'] }}</button>
+                            <div class="dropdown-menu" id="profile-droplist">
+                                <a class="dropdown-item" href="/profile/{{ session['uid'] }}">My Profile</a>
+                                <a class="dropdown-item" href="/create-blog">Create Blog</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <span class="navbar-text actions ms-auto">
+                            <a class="login" href="/login">Log In</a>
+                            <a class="btn btn-light action-button" role="button" href="/signup">Sign Up</a>
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="main">
+        <div class="container mx-auto" id="main-content">
+            {% block main %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

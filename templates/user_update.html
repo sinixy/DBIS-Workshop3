@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<form action='/profile/{{ user.uid }}/edit' method="POST">
+    <div class="form-group user-input">
+    	<label>login</label>
+    	<input type="text" class="form-control" name="login" value="{{ user.login }}" />
+    </div>
+    <div class="form-group user-input">
+    	<label>password</label>
+    	<input type="text" class="form-control" name="password" value="{{ user.password }}" />
+    </div>
+    <div class="form-group user-input">
+    	<label>email</label>
+    	<input type="text" class="form-control" name="email" value="{{ user.email }}" />
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
+</form>
+{% endblock %}

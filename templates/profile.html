@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h4 class="card-title">{{ user.login }}</h4>
+<p class="card-text">Email: {{ user.email }}</p>
+<h4>My blogs</h4>
+{% for b in blogs %}
+	<a href="/blog/{{ b.blogid }}">{{ b.title }}</a>
+{% endfor %}
+{% if user.uid == session['uid'] or session['username'] == 'admin' %}
+	<section class="mt-4">
+		<div role="group" class="btn-group">
+		    <a href="/profile/{{ user.uid }}/edit" class="btn btn-primary" type="button">Edit <i class="fa fa-edit"></i></a>
+		    <a href="/profile/{{ user.comid }}/delete" class="btn btn-danger" type="button">Delete <i class="fa fa-trash"></i></a>
+		</div>
+	</section>
+{% endif %}
+{% endblock %}

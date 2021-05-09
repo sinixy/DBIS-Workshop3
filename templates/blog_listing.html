@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="card-columns">
+{% for b in blogs %}
+	{% set user = b.author|get_user %}
+	<div class="card text-center">
+        <div class="card-body">
+            <h4 class="card-title">{{ b.title }}</h4>
+            <p class="card-subtitle"><i>by {{ user.login }}</i></p>
+            <p class="card-text">{{ b.text|get_description }}</p>
+            <a class="btn btn-primary mx-auto" role="button" href="/blog/{{ b.blogid }}">Read...</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

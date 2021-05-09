@@ -1,0 +1,52 @@
+html, body {
+  height: 100%;
+}
+
+.user-input {
+  margin-bottom: 16px;
+}
+
+#main {
+  background: rgb(245,245,245);
+  height: 100%;
+}
+
+#main-content {
+  padding: 24px;
+  background-color: white;
+  width: 80%;
+  height: 100%;
+}
+
+.login-form, .signup-form {
+	width: 50%;
+}
+
+#comment-section {
+	margin-top: 32px;
+}
+
+#comment-form {
+	margin-top: 16px;
+}
+
+
+
+.card-columns .card {
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .card-columns {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    -webkit-column-gap: 1.25rem;
+    -moz-column-gap: 1.25rem;
+    column-gap: 1.25rem;
+  }
+  .card-columns .card {
+    display: inline-block;
+    width: 100%;
+  }
+}

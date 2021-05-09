@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<form style="width: 80%;" action='/comment/{{ comment.comid }}/edit' method="POST">
+    <div class="form-group user-input">
+        <label>Text</label>
+        <textarea class="form-control" name="text">{{ comment.text }}</textarea>
+    </div>
+    {% if session['username'] == 'admin' %}
+    <div class="form-group user-input">
+        <label>Date</label>
+        <input class="form-control" type="date" name="date" value="{{ comment.date }}">
+    </div>
+    <div class="form-group user-input">
+        <label>User</label>
+        <select class="form-control" name="user">
+            <option value="{{ comment.user }}" selected>Current userID = {{ comment.user }}</option>
+            {% for user in users %}
+                <option value="{{ user.uid }}">[{{ user.uid }}] {{user.login}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group user-input">
+        <label>Blog</label>
+        <select class="form-control" name="blog">
+                <option value="{{ comment.blog }}" selected>Current blogID = {{ comment.blog }}</option>
+                {% for blog in blogs %}
+                    <option value="{{ blog.blogid }}">[{{ blog.blogid }}] {{blog.title}}</option>
+                {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+    <button class="btn btn-primary" type="submit">Update</button>
+</form>
+{% endblock %}
