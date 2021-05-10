@@ -12,7 +12,7 @@
 * User (користувач), що має BlogPost та Comment
 
 ## Heroku App
-Посилання: https://workshop3-sin.herokuapp.com
+Посилання: https://workshop3-sin.herokuapp.com<br>
 На головній сторінці також міститься додаткова інформація про вебзастосунок.
 
 ## Інструкція по розгортанню
